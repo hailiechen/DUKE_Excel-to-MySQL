@@ -1,0 +1,66 @@
+Question 1: How would you select the Dog IDs for the dogs in the Dognition data set that were DNA tested
+(these should have a 1 in the dna_tested field of the dogs table)? Try it below:
+
+%%sql
+select dog_guid, dna_tested
+from dogs
+where dna_tested=1;
+
+
+Question 2: How would you query the User IDs of customers who bought annual subscriptions, 
+indicated by a "2" in the membership_type field of the users table?
+
+%%sql
+select user_guid
+from users
+where membership_type=2;
+
+
+Question 3: How would you query all the data from customers located in the state of North Carolina (abbreviated "NC") or New York (abbreviated "NY")?
+
+%%sql
+select * from users
+where state in ("NC", "NY");
+
+
+Question 4: Now that you have seen how datetime data can be used to impose criteria on the data you select, 
+how would you select all the Dog IDs and time stamps of Dognition tests completed before October 15, 2015?
+
+%%sql
+select dod_guid, created_at
+from complete_tests
+where created_at<'2015-10-15';
+
+
+Question 5: How would you select all the User IDs of customers who do not have null values in the State field of their demographic information
+
+%%sql
+select user_guid 
+from users
+where state is not null;
+
+
+Question 6: How would you retrieve the Dog ID, subcategory_name, and test_name fields, in that order, 
+of the first 10 reviews entered in the Reviews table to be submitted in 2014?
+
+%%sql
+select dog_guid, subcategory_name, test_name
+from reviews
+where YEAR(created_at)=2014
+limit 10;
+
+
+
+Question 7: How would you select all of the User IDs of customers who have female dogs whose breed includes the word "terrier" somewhere in its name?
+
+%%sql
+select user_guid, gender, breed
+from dogs
+where gender='female' and breed like ("%terrier%");
+
+
+
+Question 8: How would you select the Dog ID, test name, and subcategory associated 
+with each completed test for the first 100 tests entered in October, 2014?
+
+
